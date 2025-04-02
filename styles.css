@@ -1,0 +1,484 @@
+/* Palette de couleurs */
+:root {
+    --dark-brown: #3F2A35;
+    --light-brown: #D8CBB4;
+    --teal: #8BBDBD;
+    --light-gray: #F3F1F1;
+    --dark-gray: #3F373C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-brown);
+    font-weight: 500;
+    transition: color 0.3s;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.nav-links a:hover {
+    color: var(--teal);
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--teal);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background-color: var(--dark-brown);
+}
+
+.btn.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Hero Sections */
+.hero {
+    padding: 180px 0 100px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--light-gray) 0%, var(--light-brown) 100%);
+}
+
+.page-hero {
+    padding: 150px 0 80px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--light-gray) 0%, var(--light-brown) 100%);
+}
+
+.hero h1, .page-hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: var(--dark-brown);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    color: var(--dark-gray);
+}
+
+.hero-logo {
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+/* Section Titles */
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 36px;
+    color: var(--dark-brown);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-title p {
+    color: var(--dark-gray);
+    max-width: 700px;
+    margin: 15px auto 0;
+}
+
+/* Ebooks Section */
+.ebooks {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.ebooks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.ebook-card {
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+    border: 1px solid var(--light-brown);
+    position: relative;
+}
+
+.ebook-card:hover {
+    transform: translateY(-10px);
+}
+
+.ebook-image {
+    height: 200px;
+    background-color: #ddd;
+    background-size: cover;
+    background-position: center;
+}
+
+.ebook-info {
+    padding: 20px;
+}
+
+.ebook-info h3 {
+    margin-bottom: 10px;
+    color: var(--dark-brown);
+}
+
+.ebook-info p {
+    color: var(--dark-gray);
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.price {
+    font-weight: 700;
+    color: var(--teal);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.coming-soon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--dark-brown);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* About Page */
+.about-content {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.about-section {
+    margin-bottom: 50px;
+}
+
+.about-section h2 {
+    color: var(--dark-brown);
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.about-section p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.service-card {
+    background-color: var(--light-gray);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--light-brown);
+}
+
+.service-icon {
+    font-size: 40px;
+    color: var(--teal);
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    color: var(--dark-brown);
+    margin-bottom: 15px;
+}
+
+/* Contact Page */
+.contact-content {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+}
+
+.contact-info {
+    margin-bottom: 30px;
+}
+
+.contact-info h2 {
+    color: var(--dark-brown);
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--teal);
+}
+
+.social-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--dark-brown);
+    transition: background-color 0.3s;
+}
+
+.social-btn:hover {
+    background-color: var(--light-brown);
+}
+
+.contact-form {
+    background-color: var(--light-gray);
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid var(--light-brown);
+}
+
+.contact-form h2 {
+    color: var(--dark-brown);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--dark-brown);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--light-brown);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Legal Page */
+.legal-content {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.legal-section {
+    margin-bottom: 50px;
+}
+
+.legal-section h2 {
+    color: var(--dark-brown);
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.legal-section h3 {
+    color: var(--dark-brown);
+    margin: 25px 0 15px;
+    font-size: 22px;
+}
+
+.legal-section p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-gray);
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    color: var(--teal);
+    text-transform: uppercase;
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--teal);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: var(--light-brown);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: white;
+}
+
+.footer-logo {
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: var(--light-brown);
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--teal);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--light-brown);
+    color: var(--light-brown);
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero, .page-hero {
+        padding: 150px 0 80px;
+    }
+    
+    .hero h1, .page-hero h1 {
+        font-size: 36px;
+    }
+    
+    .hero p {
+        font-size: 18px;
+    }
+    
+    .ebooks-grid, .services-grid, .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
