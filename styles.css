@@ -482,3 +482,24 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+/* Ebook Detail Page */
+.login-required {
+    font-size: 14px;
+    color: var(--dark-gray);
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.purchase-form {
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .ebook-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .ebook-cover {
+        margin-bottom: 30px;
+    }
+}
