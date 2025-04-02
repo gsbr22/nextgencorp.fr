@@ -31,3 +31,20 @@ if (contactForm) {
         this.reset();
     });
 }
+// Vérification de connexion pour la page ebook
+if (window.location.pathname.includes('ebook-football')) {
+    const purchaseBtn = document.getElementById('purchase-btn');
+    if (purchaseBtn) {
+        purchaseBtn.addEventListener('click', function(e) {
+            // Ici vous devriez vérifier si l'utilisateur est connecté
+            // Pour l'exemple, nous redirigeons vers la page de connexion
+            const isLoggedIn = false; // À remplacer par votre vérification
+            
+            if (!isLoggedIn) {
+                e.preventDefault();
+                alert('Veuillez vous connecter pour procéder à l\'achat.');
+                window.location.href = "https://gsbr22.github.io/loginnextgen/";
+            }
+        });
+    }
+}
