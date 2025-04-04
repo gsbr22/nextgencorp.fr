@@ -48,3 +48,21 @@ if (window.location.pathname.includes('ebook-football')) {
         });
     }
 }
+// Dans le code de votre site (nextgencorp.fr)
+document.addEventListener('DOMContentLoaded', function() {
+    // Récupérer les informations de connexion
+    const userEmail = localStorage.getItem('userEmail');
+    const lastLogin = localStorage.getItem('lastLogin');
+    const userName = localStorage.getItem('userName');
+    
+    if (userEmail) {
+        console.log('Utilisateur connecté:', userEmail);
+        // Vous pouvez utiliser ces informations pour personnaliser votre site
+        // Par exemple afficher un message de bienvenue
+    }
+    
+    // Optionnel: Effacer les données après utilisation si nécessaire
+    // localStorage.removeItem('userEmail');
+    // localStorage.removeItem('lastLogin');
+    // localStorage.removeItem('userName');
+});
