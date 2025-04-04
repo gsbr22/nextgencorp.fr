@@ -18,7 +18,18 @@
                     <li><a href="about.html">À propos</a></li>
                     <li><a href="index.html#ebooks">Ebooks</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html" class="btn">Connexion</a></li>
+                    <li id="auth-link">
+                        <a href="login.html" class="btn" id="auth-btn">Connexion</a>
+                        <div class="account-dropdown" id="account-dropdown">
+                            <div class="account-info">
+                                <p><strong>Mon compte</strong></p>
+                                <p id="user-email"></p>
+                                <p>Dernière connexion: <span id="last-login"></span></p>
+                                <p>Achats: <span id="user-purchases">0</span></p>
+                            </div>
+                            <button id="logout-btn">Déconnexion</button>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -49,9 +60,9 @@
                         </ul>
                     </div>
                     
-                    <form action="https://www.paypal.com/ncp/payment/Y8ZWVRJJHNQZ6" method="post" target="_top" class="purchase-form" id="purchase-form">
+                    <form action="https://www.paypal.com/ncp/payment/Y8ZWVRJJHNQZ6" method="post" target="_top" id="purchase-form">
                         <input type="hidden" name="cmd" value="_s-xclick">
-                        <input type="hidden" name="hosted_button_id" value="VOTRE_ID_BOUTON_PAYPAL">
+                        <input type="hidden" name="hosted_button_id" value="Y8ZWVRJJHNQZ6">
                         <button type="submit" class="btn" id="purchase-btn">Acheter maintenant</button>
                     </form>
                     <p class="login-required">* Vous devez être connecté pour effectuer un achat</p>
@@ -95,15 +106,85 @@
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="js/script.js"></script>
     <script>
-        document.getElementById('purchase-form').addEventListener('submit', function(e) {
-            const user = firebase.auth().currentUser;
-            if (!user) {
-                e.preventDefault();
-                alert('Veuillez vous connecter pour effectuer un achat');
-                window.location.href = "login.html";
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBzMi3F5vLM0bYxTY1KuBJf7eD6Nx96wsQ",
+            authDomain: "login-ec53a.firebaseapp.com",
+            projectId: "login-ec53a",
+            storageBucket: "login-ec53a.appspot.com",
+            messagingSenderId: "123644267529",
+            appId: "1:123644267529:web:5409efdf896971c655bcd8"
+        };
+
+        // Initialisation Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Gestion de l'affichage utilisateur
+        function updateAuthUI(user) {
+            const authBtn = document.getElementById('auth-btn');
+            const accountDropdown = document.getElementById('account-dropdown');
+            
+            if (user) {
+                // Utilisateur connecté
+                authBtn.textContent = 'Mon compte';
+                authBtn.href = '#';
+                accountDropdown.style.display = 'block';
+                
+                // Récupération des infos utilisateur
+                db.collection('users').doc(user.uid).get().then(doc => {
+                    if (doc.exists) {
+                        const userData = doc.data();
+                        document.getElementById('user-email').textContent = user.email;
+                        document.getElementById('last-login').textContent = 
+                            new Date(userData.lastLogin.toDate()).toLocaleString();
+                        document.getElementById('user-purchases').textContent = 
+                            userData.purchases ? userData.purchases.length : 0;
+                    }
+                });
+                
+                // Gestion du clic sur "Mon compte"
+                authBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    accountDropdown.style.display = 
+                        accountDropdown.style.display === 'block' ? 'none' : 'block';
+                });
+            } else {
+                // Utilisateur non connecté
+                authBtn.textContent = 'Connexion';
+                authBtn.href = 'login.html';
+                accountDropdown.style.display = 'none';
             }
+        }
+
+        // Vérification de l'état d'authentification
+        auth.onAuthStateChanged(user => {
+            updateAuthUI(user);
+            
+            // Gestion du formulaire d'achat
+            const purchaseForm = document.getElementById('purchase-form');
+            if (purchaseForm) {
+                purchaseForm.addEventListener('submit', function(e) {
+                    if (!user) {
+                        e.preventDefault();
+                        alert('Veuillez vous connecter pour effectuer un achat');
+                        window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.href);
+                    }
+                });
+            }
+        });
+
+        // Déconnexion
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            auth.signOut().then(() => {
+                window.location.href = 'index.html';
+            });
         });
     </script>
 </body>
