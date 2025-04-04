@@ -6,53 +6,6 @@
     <title>Connexion - NextGenCorp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .login-container {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 40px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .login-logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .login-logo img {
-            height: 80px;
-        }
-        
-        .form-toggle {
-            display: flex;
-            margin-bottom: 30px;
-        }
-        
-        .toggle-btn {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            background: #f5f5f5;
-            border: none;
-            font-weight: 600;
-        }
-        
-        .toggle-btn.active {
-            background: var(--teal);
-            color: white;
-        }
-        
-        .form-container {
-            display: none;
-        }
-        
-        .form-container.active {
-            display: block;
-        }
-    </style>
 </head>
 <body>
     <div class="login-container">
@@ -74,6 +27,9 @@
                 <div class="form-group">
                     <label for="login-password">Mot de passe</label>
                     <input type="password" id="login-password" required>
+                    <span class="toggle-password" onclick="togglePassword('login-password')">
+                        <i class="far fa-eye"></i>
+                    </span>
                 </div>
                 <button type="submit" class="btn">Se connecter</button>
             </form>
@@ -90,8 +46,11 @@
                     <input type="email" id="signup-email" required>
                 </div>
                 <div class="form-group">
-                    <label for="signup-password">Mot de passe</label>
-                    <input type="password" id="signup-password" required>
+                    <label for="signup-password">Mot de passe (6 caractères min)</label>
+                    <input type="password" id="signup-password" minlength="6" required>
+                    <span class="toggle-password" onclick="togglePassword('signup-password')">
+                        <i class="far fa-eye"></i>
+                    </span>
                 </div>
                 <button type="submit" class="btn">S'inscrire</button>
             </form>
@@ -100,22 +59,14 @@
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="js/script.js"></script>
     <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBzMi3F5vLM0bYxTY1KuBJf7eD6Nx96wsQ",
-            authDomain: "login-ec53a.firebaseapp.com",
-            projectId: "login-ec53a",
-            storageBucket: "login-ec53a.appspot.com",
-            messagingSenderId: "123644267529",
-            appId: "1:123644267529:web:5409efdf896971c655bcd8"
-        };
+        // Initialisation Firebase
+        const auth = firebase.auth();
+        const db = firebase.firestore();
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        // Toggle between login and signup forms
+        // Toggle entre les formulaires
         document.getElementById('login-toggle').addEventListener('click', function() {
             this.classList.add('active');
             document.getElementById('signup-toggle').classList.remove('active');
@@ -130,36 +81,70 @@
             document.getElementById('login-form').classList.remove('active');
         });
 
-        // Handle login
+        // Connexion
         document.getElementById('login').addEventListener('submit', function(e) {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
 
-            firebase.auth().signInWithEmailAndPassword(email, password)
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Mise à jour de la dernière connexion
+                    return db.collection('users').doc(userCredential.user.uid).update({
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                })
                 .then(() => {
-                    window.location.href = "index.html";
+                    // Redirection
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirectUrl = urlParams.get('redirect') || 'index.html';
+                    window.location.href = redirectUrl;
                 })
                 .catch(error => {
                     alert("Erreur de connexion: " + error.message);
                 });
         });
 
-        // Handle signup
+        // Inscription
         document.getElementById('signup').addEventListener('submit', function(e) {
             e.preventDefault();
+            const name = document.getElementById('signup-name').value;
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
 
-            firebase.auth().createUserWithEmailAndPassword(email, password)
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Création du profil utilisateur
+                    return db.collection('users').doc(userCredential.user.uid).set({
+                        name: name,
+                        email: email,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+                        purchases: []
+                    });
+                })
                 .then(() => {
                     alert("Compte créé avec succès !");
-                    document.getElementById('signup-toggle').click();
+                    document.getElementById('login-toggle').click();
                 })
                 .catch(error => {
                     alert("Erreur d'inscription: " + error.message);
                 });
         });
+
+        // Fonction pour afficher/masquer le mot de passe
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            const icon = input.nextElementSibling.querySelector('i');
+            
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = "password";
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
     </script>
 </body>
 </html>
