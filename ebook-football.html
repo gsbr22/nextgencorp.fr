@@ -6,101 +6,29 @@
     <title>Le Guide du Footballeur - NextGenCorp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .ebook-detail {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .ebook-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .ebook-cover {
-            text-align: center;
-        }
-        
-        .ebook-cover img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .ebook-info {
-            padding: 20px;
-        }
-        
-        .ebook-title {
-            color: var(--dark-brown);
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .ebook-price {
-            font-size: 28px;
-            color: var(--teal);
-            font-weight: bold;
-            margin: 20px 0;
-        }
-        
-        .ebook-description {
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-        
-        .ebook-features {
-            margin: 30px 0;
-        }
-        
-        .ebook-features h3 {
-            color: var(--dark-brown);
-            margin-bottom: 15px;
-        }
-        
-        .ebook-features ul {
-            list-style-position: inside;
-            margin-left: 20px;
-        }
-        
-        .ebook-features li {
-            margin-bottom: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .ebook-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav>
                 <a href="index.html" class="logo">
-                    <img src="nextlogo.png" alt="NextGenCorp Logo">
+                    <img src="images/nextlogo.png" alt="NextGenCorp Logo">
                 </a>
                 <ul class="nav-links">
                     <li><a href="about.html">À propos</a></li>
                     <li><a href="index.html#ebooks">Ebooks</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="https://gsbr22.github.io/loginnextgen/" class="btn">Connexion</a></li>
+                    <li><a href="login.html" class="btn">Connexion</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Ebook Detail Section -->
     <section class="ebook-detail">
         <div class="container">
             <div class="ebook-container">
                 <div class="ebook-cover">
-                    <img src="guide_footballeur.png" alt="Le Guide du Footballeur">
+                    <img src="images/guide_footballeur.png" alt="Le Guide du Footballeur">
                     <div class="ebook-price">16,99 €</div>
                 </div>
                 
@@ -121,24 +49,25 @@
                         </ul>
                     </div>
                     
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="purchase-form">
-                        <input type="hidden" name="cmd" value="_s-xclick">
-                        <input type="hidden" name="hosted_button_id" value="VOTRE_ID_BOUTON_PAYPAL">
-                        <button type="submit" class="btn" id="purchase-btn">Acheter maintenant</button>
-                    </form>
+                    <form <style>.pp-Y8ZWVRJJHNQZ6{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
+<form action="https://www.paypal.com/ncp/payment/Y8ZWVRJJHNQZ6" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+  <input class="pp-Y8ZWVRJJHNQZ6" type="submit" value="Acheter" />
+  <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
+  <section> Optimisé par <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+</form>
+                    
                     <p class="login-required">* Vous devez être connecté pour effectuer un achat</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>NextGenCorp</h3>
-                    <img src="nextlogo.png" alt="Logo" class="footer-logo">
+                    <img src="images/nextlogo.png" alt="Logo" class="footer-logo">
                     <div class="social-links">
                         <a href="https://www.instagram.com/le_guide_du_footballeur/"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.tiktok.com/@nextgencorp"><i class="fab fa-tiktok"></i></a>
@@ -166,17 +95,16 @@
         </div>
     </footer>
 
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="js/script.js"></script>
     <script>
-        // Vérification de connexion pour l'achat
-        document.getElementById('purchase-btn').addEventListener('click', function(e) {
-            // Cette fonction devrait vérifier si l'utilisateur est connecté
-            // Pour l'exemple, nous simulons qu'il n'est pas connecté
-            const isLoggedIn = false; // À remplacer par votre vérification réelle
-            
-            if (!isLoggedIn) {
+        document.getElementById('purchase-form').addEventListener('submit', function(e) {
+            const user = firebase.auth().currentUser;
+            if (!user) {
                 e.preventDefault();
-                alert('Vous devez vous connecter pour effectuer un achat.');
-                window.location.href = "https://gsbr22.github.io/loginnextgen/";
+                alert('Veuillez vous connecter pour effectuer un achat');
+                window.location.href = "login.html";
             }
         });
     </script>
