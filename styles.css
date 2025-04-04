@@ -1,4 +1,3 @@
-/* Palette de couleurs */
 :root {
     --dark-brown: #3F2A35;
     --light-brown: #D8CBB4;
@@ -81,6 +80,8 @@ nav {
     transition: background-color 0.3s;
     text-transform: uppercase;
     letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
@@ -92,20 +93,19 @@ nav {
     cursor: not-allowed;
 }
 
-/* Hero Sections */
+/* Hero Section */
 .hero {
     padding: 180px 0 100px;
     text-align: center;
     background: linear-gradient(135deg, var(--light-gray) 0%, var(--light-brown) 100%);
 }
 
-.page-hero {
-    padding: 150px 0 80px;
-    text-align: center;
-    background: linear-gradient(135deg, var(--light-gray) 0%, var(--light-brown) 100%);
+.hero-logo {
+    height: 80px;
+    margin-bottom: 20px;
 }
 
-.hero h1, .page-hero h1 {
+.hero h1 {
     font-size: 48px;
     margin-bottom: 20px;
     color: var(--dark-brown);
@@ -120,12 +120,12 @@ nav {
     color: var(--dark-gray);
 }
 
-.hero-logo {
-    height: 80px;
-    margin-bottom: 20px;
+/* Ebooks Section */
+.ebooks {
+    padding: 80px 0;
+    background-color: white;
 }
 
-/* Section Titles */
 .section-title {
     text-align: center;
     margin-bottom: 50px;
@@ -142,12 +142,6 @@ nav {
     color: var(--dark-gray);
     max-width: 700px;
     margin: 15px auto 0;
-}
-
-/* Ebooks Section */
-.ebooks {
-    padding: 80px 0;
-    background-color: white;
 }
 
 .ebooks-grid {
@@ -174,7 +168,6 @@ nav {
 
 .ebook-image {
     height: 200px;
-    background-color: #ddd;
     background-size: cover;
     background-position: center;
 }
@@ -214,171 +207,79 @@ nav {
     text-transform: uppercase;
 }
 
-/* About Page */
-.about-content {
-    padding: 80px 0;
+/* Ebook Detail Page */
+.ebook-detail {
+    padding: 120px 0 80px;
     background-color: white;
 }
 
-.about-section {
-    margin-bottom: 50px;
-}
-
-.about-section h2 {
-    color: var(--dark-brown);
-    margin-bottom: 20px;
-    font-size: 28px;
-}
-
-.about-section p {
-    margin-bottom: 15px;
-    line-height: 1.8;
-}
-
-.services-grid {
+.ebook-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.service-card {
-    background-color: var(--light-gray);
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    border: 1px solid var(--light-brown);
-}
-
-.service-icon {
-    font-size: 40px;
-    color: var(--teal);
-    margin-bottom: 20px;
-}
-
-.service-card h3 {
-    color: var(--dark-brown);
-    margin-bottom: 15px;
-}
-
-/* Contact Page */
-.contact-content {
-    padding: 80px 0;
-    background-color: white;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 50px;
+    align-items: center;
 }
 
-.contact-info {
+.ebook-cover {
+    text-align: center;
+}
+
+.ebook-cover img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.ebook-info {
+    padding: 20px;
+}
+
+.ebook-title {
+    color: var(--dark-brown);
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.ebook-price {
+    font-size: 28px;
+    color: var(--teal);
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.ebook-description {
+    line-height: 1.8;
     margin-bottom: 30px;
 }
 
-.contact-info h2 {
+.ebook-features {
+    margin: 30px 0;
+}
+
+.ebook-features h3 {
     color: var(--dark-brown);
-    margin-bottom: 20px;
-}
-
-.contact-info p {
     margin-bottom: 15px;
-    display: flex;
-    align-items: center;
 }
 
-.contact-info i {
-    margin-right: 10px;
-    color: var(--teal);
+.ebook-features ul {
+    list-style-position: inside;
+    margin-left: 20px;
 }
 
-.social-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.ebook-features li {
+    margin-bottom: 10px;
+}
+
+.purchase-form {
     margin-top: 30px;
 }
 
-.social-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 15px;
-    background-color: var(--light-gray);
-    border-radius: 5px;
-    text-decoration: none;
-    color: var(--dark-brown);
-    transition: background-color 0.3s;
-}
-
-.social-btn:hover {
-    background-color: var(--light-brown);
-}
-
-.contact-form {
-    background-color: var(--light-gray);
-    padding: 30px;
-    border-radius: 10px;
-    border: 1px solid var(--light-brown);
-}
-
-.contact-form h2 {
-    color: var(--dark-brown);
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: var(--dark-brown);
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--light-brown);
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* Legal Page */
-.legal-content {
-    padding: 80px 0;
-    background-color: white;
-}
-
-.legal-section {
-    margin-bottom: 50px;
-}
-
-.legal-section h2 {
-    color: var(--dark-brown);
-    margin-bottom: 20px;
-    font-size: 28px;
-}
-
-.legal-section h3 {
-    color: var(--dark-brown);
-    margin: 25px 0 15px;
-    font-size: 22px;
-}
-
-.legal-section p {
-    margin-bottom: 15px;
-    line-height: 1.8;
+.login-required {
+    font-size: 14px;
+    color: var(--dark-gray);
+    margin-top: 10px;
+    font-style: italic;
 }
 
 /* Footer */
@@ -460,6 +361,28 @@ footer {
     font-size: 14px;
 }
 
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--dark-brown);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--light-brown);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
@@ -478,24 +401,7 @@ footer {
         font-size: 18px;
     }
     
-    .ebooks-grid, .services-grid, .contact-grid {
-        grid-template-columns: 1fr;
-    }
-}
-/* Ebook Detail Page */
-.login-required {
-    font-size: 14px;
-    color: var(--dark-gray);
-    margin-top: 10px;
-    font-style: italic;
-}
-
-.purchase-form {
-    margin-top: 30px;
-}
-
-@media (max-width: 768px) {
-    .ebook-container {
+    .ebook-container, .ebooks-grid {
         grid-template-columns: 1fr;
     }
     
