@@ -66,3 +66,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // localStorage.removeItem('lastLogin');
     // localStorage.removeItem('userName');
 });
+// À placer dans le <head> de votre site nextgencorp.fr
+document.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const loggedIn = urlParams.get('loggedIn');
+  const userEmail = urlParams.get('email');
+
+  if (loggedIn && userEmail) {
+    // Stocker en sessionStorage pour la navigation sur le site
+    sessionStorage.setItem('userEmail', userEmail);
+    
+    // Afficher un message de bienvenue (exemple)
+    alert('Bienvenue ' + userEmail);
+    
+    // Optionnel: Nettoyer l'URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+  
+  // Vérifier si l'utilisateur est connecté
+  const storedEmail = sessionStorage.getItem('userEmail');
+  if (storedEmail) {
+    console.log('Utilisateur connecté:', storedEmail);
+    // Personnaliser l'interface utilisateur
+  }
+});
