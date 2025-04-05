@@ -5,218 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - NextGenCorp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        :root {
-            --dark-brown: #3F2A35;
-            --light-brown: #D8CBB4;
-            --teal: #8BBDBD;
-            --light-gray: #F3F1F1;
-            --dark-gray: #3F373C;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--light-gray) 0%, var(--light-brown) 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
         .login-container {
-            width: 100%;
-            max-width: 450px;
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            animation: fadeIn 0.5s ease;
         }
-
-        .login-header {
-            background-color: var(--teal);
-            padding: 30px;
-            text-align: center;
-        }
-
+        
         .login-logo {
-            width: 120px;
-            margin-bottom: 15px;
+            text-align: center;
+            margin-bottom: 30px;
         }
-
-        .login-header h1 {
-            color: white;
-            font-size: 24px;
-            font-weight: 600;
+        
+        .login-logo img {
+            height: 80px;
         }
-
+        
         .form-toggle {
             display: flex;
-            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 30px;
         }
-
+        
         .toggle-btn {
             flex: 1;
-            padding: 18px;
-            background: none;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--dark-gray);
+            padding: 15px;
+            text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+            background: #f5f5f5;
+            border: none;
+            font-weight: 600;
         }
-
+        
         .toggle-btn.active {
-            color: var(--teal);
+            background: var(--teal);
+            color: white;
         }
-
-        .toggle-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--teal);
-        }
-
+        
         .form-container {
-            padding: 30px;
             display: none;
         }
-
+        
         .form-container.active {
             display: block;
-            animation: slideUp 0.5s ease;
         }
-
+        
         .form-group {
             margin-bottom: 20px;
         }
-
+        
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: var(--dark-brown);
-            font-size: 14px;
         }
-
-        .input-wrapper {
-            position: relative;
-        }
-
+        
         .form-group input {
             width: 100%;
-            padding: 14px 15px;
-            border: 1px solid var(--light-brown);
-            border-radius: 8px;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            background-color: var(--light-gray);
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--teal);
-            box-shadow: 0 0 0 3px rgba(139, 189, 189, 0.2);
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--dark-gray);
-            cursor: pointer;
-        }
-
+        
         .submit-btn {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             background-color: var(--teal);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
         }
-
-        .submit-btn:hover {
-            background-color: var(--dark-brown);
-            transform: translateY(-2px);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
+        
         .form-footer {
             text-align: center;
             margin-top: 20px;
-            font-size: 14px;
-            color: var(--dark-gray);
-        }
-
-        .form-footer a {
-            color: var(--teal);
-            font-weight: 600;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .form-footer a:hover {
-            color: var(--dark-brown);
-            text-decoration: underline;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 480px) {
-            .login-container {
-                border-radius: 10px;
-            }
-            
-            .login-header {
-                padding: 25px;
-            }
-            
-            .form-container {
-                padding: 25px;
-            }
-            
-            .toggle-btn {
-                padding: 15px;
-                font-size: 15px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="login-header">
-            <img src="images/nextlogo2.png" alt="NextGenCorp" class="login-logo">
-            <h1>Bienvenue sur NextGenCorp</h1>
+        <div class="login-logo">
+            <img src="images/nextlogo2.png" alt="NextGenCorp">
         </div>
         
         <div class="form-toggle">
@@ -227,86 +100,44 @@
         <div id="login-form" class="form-container active">
             <form id="login">
                 <div class="form-group">
-                    <label for="login-email">Adresse email</label>
-                    <div class="input-wrapper">
-                        <input type="email" id="login-email" placeholder="votre@email.com" required>
-                    </div>
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="login-password">Mot de passe</label>
-                    <div class="input-wrapper">
-                        <input type="password" id="login-password" placeholder="••••••••" required>
-                        <span class="toggle-password" onclick="togglePassword('login-password')">
-                            <i class="far fa-eye"></i>
-                        </span>
-                    </div>
+                    <input type="password" id="login-password" required>
                 </div>
-                
                 <button type="submit" class="submit-btn">Se connecter</button>
-                
-                <div class="form-footer">
-                    <p>Mot de passe oublié ? <a href="#">Réinitialiser</a></p>
-                </div>
             </form>
+            <div class="form-footer">
+                <a href="#">Mot de passe oublié ?</a>
+            </div>
         </div>
         
         <div id="signup-form" class="form-container">
             <form id="signup">
                 <div class="form-group">
                     <label for="signup-name">Nom complet</label>
-                    <div class="input-wrapper">
-                        <input type="text" id="signup-name" placeholder="Votre nom" required>
-                    </div>
+                    <input type="text" id="signup-name" required>
                 </div>
-                
                 <div class="form-group">
-                    <label for="signup-email">Adresse email</label>
-                    <div class="input-wrapper">
-                        <input type="email" id="signup-email" placeholder="votre@email.com" required>
-                    </div>
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="signup-password">Mot de passe</label>
-                    <div class="input-wrapper">
-                        <input type="password" id="signup-password" placeholder="•••••••• (6 caractères minimum)" minlength="6" required>
-                        <span class="toggle-password" onclick="togglePassword('signup-password')">
-                            <i class="far fa-eye"></i>
-                        </span>
-                    </div>
+                    <input type="password" id="signup-password" minlength="6" required>
                 </div>
-                
-                <button type="submit" class="submit-btn">Créer un compte</button>
-                
-                <div class="form-footer">
-                    <p>En créant un compte, vous acceptez nos <a href="legal.html">Conditions d'utilisation</a></p>
-                </div>
+                <button type="submit" class="submit-btn">S'inscrire</button>
             </form>
+            <div class="form-footer">
+                <p>En créant un compte, vous acceptez nos <a href="legal.html">Conditions d'utilisation</a></p>
+            </div>
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script>
-        // Initialisation Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBzMi3F5vLM0bYxTY1KuBJf7eD6Nx96wsQ",
-            authDomain: "login-ec53a.firebaseapp.com",
-            projectId: "login-ec53a",
-            storageBucket: "login-ec53a.appspot.com",
-            messagingSenderId: "123644267529",
-            appId: "1:123644267529:web:5409efdf896971c655bcd8"
-        };
-
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // Toggle entre les formulaires
+        // Toggle between login and signup forms
         document.getElementById('login-toggle').addEventListener('click', function() {
             this.classList.add('active');
             document.getElementById('signup-toggle').classList.remove('active');
@@ -319,88 +150,6 @@
             document.getElementById('login-toggle').classList.remove('active');
             document.getElementById('signup-form').classList.add('active');
             document.getElementById('login-form').classList.remove('active');
-        });
-
-        // Fonction pour afficher/masquer le mot de passe
-        function togglePassword(id) {
-            const input = document.getElementById(id);
-            const icon = input.nextElementSibling.querySelector('i');
-            
-            if (input.type === "password") {
-                input.type = "text";
-                icon.classList.replace('fa-eye', 'fa-eye-slash');
-            } else {
-                input.type = "password";
-                icon.classList.replace('fa-eye-slash', 'fa-eye');
-            }
-        }
-
-        // Gestion de la connexion
-        document.getElementById('login').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            const submitBtn = this.querySelector('button[type="submit"]');
-
-            // Désactiver le bouton pendant la requête
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion...';
-
-            auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Mise à jour de la dernière connexion
-                    return db.collection('users').doc(userCredential.user.uid).update({
-                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                })
-                .then(() => {
-                    // Redirection
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const redirectUrl = urlParams.get('redirect') || 'index.html';
-                    window.location.href = redirectUrl;
-                })
-                .catch((error) => {
-                    alert("Erreur de connexion: " + error.message);
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Se connecter';
-                });
-        });
-
-        // Gestion de l'inscription
-        document.getElementById('signup').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('signup-name').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const submitBtn = this.querySelector('button[type="submit"]');
-
-            // Désactiver le bouton pendant la requête
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Création du compte...';
-
-            auth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Création du profil utilisateur
-                    return db.collection('users').doc(userCredential.user.uid).set({
-                        name: name,
-                        email: email,
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                        lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-                        purchases: []
-                    });
-                })
-                .then(() => {
-                    alert("Compte créé avec succès ! Veuillez vous connecter.");
-                    document.getElementById('login-toggle').click();
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Créer un compte';
-                    document.getElementById('signup').reset();
-                })
-                .catch((error) => {
-                    alert("Erreur d'inscription: " + error.message);
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Créer un compte';
-                });
         });
     </script>
 </body>
