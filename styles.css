@@ -80,8 +80,6 @@ nav {
     transition: background-color 0.3s;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border: none;
-    cursor: pointer;
 }
 
 .btn:hover {
@@ -271,17 +269,6 @@ nav {
     margin-bottom: 10px;
 }
 
-.purchase-form {
-    margin-top: 30px;
-}
-
-.login-required {
-    font-size: 14px;
-    color: var(--dark-gray);
-    margin-top: 10px;
-    font-style: italic;
-}
-
 /* Footer */
 footer {
     background-color: var(--dark-gray);
@@ -361,28 +348,6 @@ footer {
     font-size: 14px;
 }
 
-/* Form Styles */
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: var(--dark-brown);
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--light-brown);
-    border-radius: 5px;
-    font-size: 16px;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
@@ -408,44 +373,4 @@ footer {
     .ebook-cover {
         margin-bottom: 30px;
     }
-}
-/* Account Dropdown */
-.account-dropdown {
-    display: none;
-    position: absolute;
-    right: 0;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    width: 250px;
-    z-index: 1000;
-    margin-top: 10px;
-}
-
-.account-info {
-    margin-bottom: 15px;
-}
-
-.account-info p {
-    margin-bottom: 8px;
-    font-size: 14px;
-}
-
-#logout-btn {
-    width: 100%;
-    padding: 8px;
-    background: var(--teal);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#logout-btn:hover {
-    background: var(--dark-brown);
-}
-
-#auth-link {
-    position: relative;
 }
